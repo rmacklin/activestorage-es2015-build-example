@@ -45,6 +45,6 @@
     "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {
-    "activestorage": "^5.2.0-rc1"
+    "activestorage-with-source-code": "^5.2.0-rc1"
   }
 }

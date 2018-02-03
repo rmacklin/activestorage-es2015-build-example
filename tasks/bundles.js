@@ -86,6 +86,12 @@ const baseConfig = {
   },
   cache: {},
   devtool: '#source-map',
+  resolve: {
+    alias: {
+      activestorage:
+        'activestorage-with-source-code',
+    },
+  },
 };
 
 const modernConfig = Object.assign({}, baseConfig, {

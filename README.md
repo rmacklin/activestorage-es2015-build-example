@@ -1,39 +1,39 @@
-# Webpack ESNext Boilerplate
+This is a demo repository to show the benefits of publishing [activestorage]'s
+source code along with its compiled code.
 
-Webpack configuration and build scripts to deploy ES2015+ code to production (via `<script type="module">`) with legacy browser fallback support via `<script nomodule>`.
+It is based on the [webpack-esnext-boilerplate] repository which demostrates the
+techniques described in Philip Walton's article:
+[Deploying ES2015+ Code in Production Today].
 
-This boilerplate is an implementation of the techniques described in my article: [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/).
+Switching this app from depending on activestorage's compiled code to its source
+code shrinks this app's javascript bundle for modern browsers shrinks from `19K`
+to `14K`.
 
-## Usage
+To verify this result:
 
-To view site locally, run the following command:
+1. Clone the repository and install its dependencies:
+   ```sh
+   git clone git@github.com:rmacklin/activestorage-es2015-build-example.git
+   cd activestorage-es2015-build-example
+   npm install
+   ```
 
-```sh
-npm start
-```
+2. Check out the commit which uses activestorage's compiled code and build the
+   app:
+   ```sh
+   git checkout 6e15aea5c4d6fea33ac781e99b97d7ee59bcb5be
+   NODE_ENV=production npm run build
+   ```
+   The compiled bundle (`public/main-db52432ca7.js`) is 19260 bytes.
 
-This will build all the source files, watch for changes, and serve them from [`http://localhost:8080`](http://localhost:8080). Make sure you open up the developer tools to view the console output.
+3. Check out the commit which uses activestorage's source code and build the
+   app:
+   ```sh
+   git checkout 0cab0106919d53fc545f9f0aeadaa7ed5065481f
+   NODE_ENV=production npm run build
+   ```
+   The compiled bundle (`public/main-c9f6c71d22.js`) is 14692 bytes.
 
-To build the source files without watching for changes or starting a local server, run:
-
-```sh
-npm run build
-```
-
-### `development` vs `production` environments
-
-By default the build output is unminified. To generate minified, production-ready files, set `NODE_ENV` to `production`.
-
-```sh
-NODE_ENV=production npm run build
-```
-
-## Features
-
-To validate that this technique works for more than just simple, single-bundle sites, this boilerplate implements several advanced webpack features:
-
-* [Code splitting](https://webpack.js.org/guides/code-splitting/)
-* [Dynamic imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports)
-* [Asset fingerprinting](https://webpack.js.org/guides/caching/)
-
-To see how these feature manifest themselves in the generated files, view the `public` directory after running the build step.
+[activestorage]: https://github.com/rails/rails/tree/v5.2.0.rc1/activestorage
+[Deploying ES2015+ Code in Production Today]: https://philipwalton.com/articles/deploying-es2015-code-in-production-today/
+[webpack-esnext-boilerplate]: https://github.com/philipwalton/webpack-esnext-boilerplate

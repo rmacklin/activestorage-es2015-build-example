@@ -36,6 +36,8 @@ const configurePlugins = (opts = {}) => {
       fileName: config.manifestFileName,
       seed: revisionedAssetManifest,
     }),
+
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ];
 
   if (process.env.NODE_ENV == 'production') {

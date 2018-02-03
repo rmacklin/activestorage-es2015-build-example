@@ -89,7 +89,7 @@ const baseConfig = {
   resolve: {
     alias: {
       activestorage:
-        'activestorage-with-source-code',
+        'activestorage-with-source-code/app/javascript/activestorage',
     },
   },
 };
